@@ -5,7 +5,7 @@ These came out of the October 2026 refactor (see REFACTOR.md). Everything that c
 ## Urgent
 
 1. **Private files are publicly readable on the portal.** The old `deploy.sh` ran `scp -r *`, which uploaded every repo file. These currently return 200 at `https://portal.tyas.tyc.edu.tw/website/`: `CLAUDE.md`, `REFACTOR.md`, `deploy.sh` (it shows the `root@172.16.11.32` login and path) and `cms_stubs.html`. Once README.md and REVIEW.md exist they would be uploaded too. `deploy.sh` now uploads only the pages, `css/`, `images/` and `pdf/`, but the files already on the server must be **deleted by hand**. Also consider using a non-root deploy account.
-2. **Re-deploy and update the CMS heights.** Every modern page's layout changed slightly, and safeguarding was rebuilt. After you run `./deploy.sh`, paste the new height lines from `cms_stubs.html` into the CMS stubs for accreditation, administration, mll, mun, safeguarding and strategic_plan. Old heights would cut off or pad the pages. The new safeguarding page is about 1.8× taller than before (4310px instead of 2410px on desktop).
+2. **Re-deploy and update the CMS heights.** Every modern page's layout changed slightly, and safeguarding was rebuilt. After you run `./deploy.sh`, paste the new height lines from `cms_stubs.html` into the CMS stubs for accreditation, administration, mll, mun, safeguarding and strategic_plan. Old heights would cut off or pad the pages. Safeguarding was rebuilt again from the Phase 1 copy and is now about 9060px tall on desktop (it was 4310px).
 
 ## Content: needs school input
 
@@ -21,7 +21,15 @@ These came out of the October 2026 refactor (see REFACTOR.md). Everything that c
    - 2.5 starts with "Strengthening", but the other objectives start with an imperative ("Strengthen").
    - Roadmap "Year 5 · 2029" probably should be "2028–2029".
    - The subtitle was changed to "…and the ACS WASC and CIS Accreditation Process", so it no longer implies the school is accredited.
-9. **Live safeguarding page** still shows Strategic Plan text. Point it at `safeguarding.html` with the stub.
+9. **Safeguarding page.** The live page still shows Strategic Plan text. Point it at `safeguarding.html` with the stub. The page was rebuilt from the Phase 1 copy and the 2026–2027 Child Safeguarding Policy (sources are in `_originals/safeguarding/`). Please confirm:
+   - **Team photos** come from the `images/faculty/` staging set, copied to `images/safeguarding/` and resized to 800px wide (`elin`, `crand`, `mschen`, `jhung`). Dr. Chen's email is now `mschen@`, matching the photo filename.
+   - **Elis Lin's title** follows the policy ("Elementary School Vice Principal"). The Phase 1 copy and `faculty.html` say "Emotional Wellbeing Specialist".
+   - **The principal** appears as "Dr. Chen" because the copy gives no first name.
+   - **Nurse email**: the page uses `cwu@` from the Phase 1 copy, but `administration.html` uses `nurse@`.
+   - **Dropped claims the policy doesn't support**: police checks "renewed every two years", plus the child-protection training and code-of-conduct wording. The receipt is now named the "Parent-Child Safeguarding Policy Receipt", not the "Anti-Bullying Policy Receipt".
+   - **Assumed values**: "Last reviewed October 2026", "Next review July 2027", and the office phone plus `jmanzano@` as the contacts for broken QR codes.
+   - **The QR codes** were copied from the supplied images and haven't been scan-tested. Test them on iOS and Android, and check the 113 hotline wording, before publishing.
+   - **Not included** from the copy: the welcome video and the explainer video.
 
 ## Design decisions
 
