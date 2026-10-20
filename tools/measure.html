@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- Loaded by measure_heights.sh: opens each page in iframes at the CMS column widths and reports scrollHeight. -->
+<html>
+<body>
+<div id="out"></div>
+<script>
+var pages = location.hash.slice(1).split(','), res = {}, pending = 0;
+var widths = [1260, 1004, 1180, 920, 796, 795, 641, 640, 489, 488, 376, 285];
+pages.forEach(function (p) {
+  res[p] = {};
+  widths.forEach(function (w) {
+    pending++;
+    var f = document.createElement('iframe');
+    f.style.width = w + 'px';
+    f.style.height = '600px';
+    f.src = '../' + p + '.html';
+    f.onload = function () {
+      var d = f.contentDocument;
+      d.documentElement.style.scrollbarWidth = 'none';
+      d.fonts.ready.then(function () {
+        setTimeout(function () {
+          res[p][w] = d.documentElement.scrollHeight;
+          if (--pending === 0) document.getElementById('out').setAttribute('data-r', JSON.stringify(res));
+        }, 800);
+      });
+    };
+    document.body.appendChild(f);
+  });
+});
+</script>
+</body>
+</html>

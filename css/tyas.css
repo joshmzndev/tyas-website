@@ -1,0 +1,1304 @@
+/*
+ * tyas.css: the only stylesheet for every page in this repo.
+ * Pages are hosted outside the CMS and embedded with an <iframe> (see README.md),
+ * so this file re-creates the parts of the live site CSS that the pages rely on.
+ * Sections: Site base -> People (administration, faculty) -> one block per page
+ * (Accreditation, MLL, MUN, Safeguarding, Strategic Plan).
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+/* ==================== Site base (copied from live /css/39/root.css + main.css) ==================== */
+:root {
+	--primary: #0f48bc;
+	--primary-rgb: 177, 151, 119;
+	--secondary: #a90400;
+	--secondary-rgb: 39, 39, 39;
+	--complement: #e12c2c;
+	--complement-rgb: 119, 145, 177;
+	--triadic1: #132d65;
+	--triadic1-rgb: 151, 119, 177;
+	--triadic2: #083ba2;
+	--triadic2-rgb: 119, 177, 151;
+	--info: #303030;
+	--info-rgb: 153, 153, 153;
+	--white: #fff;
+	--white-rgb: 255, 255, 255;
+	--black: #000;
+	--black-rgb: 0, 0, 0;
+	--width-xxl: 1440px;
+}
+
+* { margin: 0; padding: 0; }
+html, body { background: transparent; overflow-x: hidden; }
+body { font-family: "Crimson Text", "Noto Sans TC", serif; }
+
+header, footer, div, nav, article, h2, h3, h4, h5, h6, hr, p, form, label, input, textarea, ul, li, img, svg, span, font, strong, b, a, i { text-align: left; vertical-align: middle; word-wrap: break-word; word-break: break-word; line-height: 170%; border-width: 0; font-family: "Crimson Text", serif; font-size: 16px; color: var(--info); }
+
+ul, ol { list-style: none; }
+img { max-width: 100%; }
+.img_cover { width: 100%; object-fit: cover; }
+.img_contain { width: 100%; object-fit: contain; }
+a, a:link, a:visited, a:hover { text-decoration: none; }
+
+.wrapper { position: relative; z-index: 2; }
+.workframe { margin: 0 auto; width: 85%; }
+@media screen and (min-width: 1441px) { .workframe { width: var(--width-xxl); } }
+
+/* ==================== People: administration, faculty (from live /css/style/articleStyle16-3.css) ==================== */
+#articleInfo20 ul{display:flex;margin:40px 0 60px;flex-direction:row;flex-wrap:wrap}
+#sideNav2 ul.Cate{text-align:center;font-size:15px;color:#9e9e9e;display:flex;justify-content:center}
+#sideNav2 >ul >li{position:relative;display:inline-block}
+#sideNav2 >ul >li >h3{display:block}
+#sideNav2 >ul >li >h3 a{color:#000000;border:1px solid #9f9f9f;line-height:50px;padding:0 20px;border-radius:45px;display:block;position:relative;overflow:hidden;transition:0.6s;letter-spacing:1px;margin:5px;font-size:15px;font-weight:400;text-align:center;cursor:pointer;z-index:0}
+#sideNav2 >ul >li >h3 a:after{content:"";display:block;position:absolute;top:0;left:0;width:0%;height:100%;background:var(--primary);z-index:-1;transition:0.6s}
+#sideNav2 >ul >li >h3 a:hover{color:#ffffff}
+#sideNav2 >ul >li >h3 a:hover:after{width:100%}
+
+/* faculty tabs: showStoreInfo() in faculty.html switches the visible box */
+.store-content { display: none; }
+#box1 { display: block; }
+
+#articleInfo16 .item{overflow:hidden;position:relative;align-items:flex-start;display:grid;grid-template-columns:200px 1fr;gap:30px 20px;margin-bottom:40px}
+#articleInfo16 .item .Txt .doctortitle::after{content:"";position:absolute;bottom:-10px;right:0;display:block;height:20px;width:20px;background:var(--secondary);z-index:0}
+#articleInfo16 .item .Txt .doctortitle{font-size:30px;color:#3a3a3a;border-bottom:1px solid #e4e4e4;position:relative;padding:0px 0px 20px 0;margin-bottom:25px;padding-left:50px}
+#articleInfo16 .item .Txt .doctortitle h2{color:var(--primary);display:inline-block;font-size:29px;line-height:1.5}
+#articleInfo16 .item .Txt .doctorexp{padding-left:50px}
+#articleInfo16 .item .Txt .doctorexp .doctorjob .subtitle,#articleInfo16 .item .Txt .doctorexp .doctorjob .subtitle span,#articleInfo16 .item .Txt .doctorexp .doctorjob .subtitle p{font-size:16px;color:#767372;line-height:200%}
+#articleInfo16 .doctorjob .subtitle, #articleInfo16 .doctorjob p { text-align: justify; }
+
+#articleInfo16 .photo { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 50%; }
+#articleInfo16 .photo img { border-radius: 50%; object-fit: cover; object-position: center top; width: 100%; height: 100%; }
+
+@media screen and (max-width: 1280px) {
+	#sideNav2 ul.Cate{flex-wrap:wrap;margin:30px 0 60px}
+}
+@media screen and (max-width: 960px) {
+	#articleInfo16 .item{grid-template-columns:1fr}
+	#articleInfo16 .item .Txt .doctortitle,#articleInfo16 .item .Txt .doctorexp{padding-left:0}
+	#sideNav2 >ul >li{width:100%;margin-bottom:10px}
+}
+@media screen and (max-width: 480px) {
+	#sideNav2 >ul >li >h3 a{padding:0 15px;margin:0 3px}
+}
+
+/* ==================== Accreditation (acc__) ==================== */
+/* ---- Shared ---- */
+#acc_intro {
+  padding: 6vw 0 0 0;
+}
+
+#acc_documents {
+  padding: 0 0 6vw 0;
+}
+
+.acc__title {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(46px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 110%;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--triadic2);
+  margin: 0 0 16px 0;
+}
+
+.acc__subtitle {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 140%;
+  text-align: center;
+  color: var(--complement);
+  max-width: 820px;
+  margin: 0 auto 48px auto;
+}
+
+.acc__body {
+  max-width: 820px;
+  margin: 0 auto 80px auto;
+}
+
+.acc__body p {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 170%;
+  letter-spacing: 0.5px;
+  color: var(--triadic1);
+  margin: 0 0 20px 0;
+}
+
+.acc__body strong {
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: normal;
+  font-weight: 700;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  color: var(--triadic2);
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.acc__label {
+  font-family: 'Crimson Text', serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 130%;
+  text-align: center;
+  color: var(--triadic2);
+  margin: 0 0 20px 0;
+}
+
+/* ---- Section 2: Documents ---- */
+.acc__doc {
+  max-width: 960px;
+  margin: 0 auto 56px auto;
+}
+
+/* PDF frame: the iframe fills it and uses the browser's PDF viewer */
+.acc__embed {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 480px;
+  border: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.acc__embed iframe,
+.acc__embed embed,
+.acc__embed object {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.acc__back {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.acc__back-link {
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: var(--complement);
+}
+
+.acc__back-link:hover {
+  color: var(--primary);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .acc__embed {
+    height: 70vh;
+    min-height: 400px;
+  }
+}
+
+/* ==================== MLL (mll__) ==================== */
+/* ---- Shared ---- */
+#mll_intro,
+#mll_coteaching,
+#mll_highschool,
+#mll_goal,
+#mll_research {
+  padding: 6vw 0;
+}
+
+.mll__eyebrow {
+  display: inline-block;
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--complement);
+  margin-bottom: 16px;
+}
+
+.mll__heading {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(46px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 110%;
+  text-transform: uppercase;
+  color: var(--triadic2);
+  margin: 0 0 48px 0;
+}
+
+.mll__para {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 170%;
+  letter-spacing: 0.5px;
+  color: var(--triadic1);
+  margin: 0;
+}
+
+.mll__para--small {
+  font-size: 18px;
+}
+
+/* ---- Section 1: Intro ---- */
+.mll__intro-text .mll__heading {
+  margin-bottom: 32px;
+}
+
+.mll__intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.mll__approach {
+  display: flex;
+  flex-direction: column;
+}
+
+.mll__diagram {
+  margin: 0 0 24px 0;
+  background: var(--white);
+  border: 1px solid rgba(var(--info-rgb), 0.15);
+  border-radius: 0 0 60px 0;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mll__diagram img {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  display: block;
+}
+
+/* ---- Section 2: Co-teaching ---- */
+.mll__lead-intro {
+  max-width: 720px;
+  margin-bottom: 56px;
+}
+
+.mll__tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-bottom: 56px;
+}
+
+.mll__tier {
+  padding: 32px 40px 32px 0;
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mll__tier:not(:first-child) {
+  padding-left: 40px;
+  border-left: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.mll__tier-grade {
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--complement);
+}
+
+.mll__tier-title {
+  font-family: 'Crimson Text', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--triadic2);
+  margin: 4px 0 4px 0;
+}
+
+.mll__tier-body {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  line-height: 160%;
+  color: var(--triadic1);
+  margin: 0;
+}
+
+.mll__credit {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.mll__credit-logo {
+  flex: 0 0 auto;
+  margin: 0;
+  background: var(--white);
+  border: 1px solid rgba(var(--info-rgb), 0.15);
+  border-radius: 0 0 24px 0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mll__credit-logo img {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+.mll__credit-text {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 160%;
+  color: var(--triadic1);
+  margin: 0;
+  max-width: 560px;
+}
+
+/* ---- Section 4: Goal ---- */
+#mll_goal .wrapper {
+  text-align: center;
+}
+
+#mll_goal .mll__eyebrow {
+  display: block;
+}
+
+.mll__goal-text {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(28px, 2.6vw, 40px);
+  font-weight: 600;
+  line-height: 145%;
+  color: var(--triadic2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ---- Section 5: Research Membership ---- */
+.mll__research {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  padding-top: 56px;
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.mll__research .mll__eyebrow {
+  margin-bottom: 0;
+}
+
+.mll__research-text {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(22px, 1.8vw, 28px);
+  font-weight: 600;
+  line-height: 145%;
+  color: var(--triadic2);
+  margin: 0;
+}
+
+.mll__research-logo {
+  margin: 0;
+  background: var(--white);
+  border: 1px solid rgba(var(--info-rgb), 0.15);
+  border-radius: 0 0 24px 0;
+  padding: 24px 32px;
+}
+
+.mll__research-logo img {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .mll__intro-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .mll__tiers {
+    grid-template-columns: 1fr;
+  }
+  .mll__tier:not(:first-child) {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .mll__credit {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+/* ==================== MUN (mun__) ==================== */
+/* ---- Shared ---- */
+#mun_intro,
+#mun_leadership,
+#mun_conferences,
+#mun_wjmun {
+  padding: 6vw 0;
+}
+
+.mun__hero {
+  margin-bottom: 56px;
+}
+
+.mun__eyebrow {
+  display: inline-block;
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--complement);
+  margin-bottom: 16px;
+}
+
+.mun__heading {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(46px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 110%;
+  text-transform: uppercase;
+  color: var(--triadic2);
+  margin: 0 0 48px 0;
+}
+
+.mun__para {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 170%;
+  letter-spacing: 0.5px;
+  color: var(--triadic1);
+  margin: 0;
+}
+
+/* the reset sets strong to 16px, so inherit the paragraph size */
+.mun__para strong {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 700;
+  color: var(--triadic2);
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+/* ---- Section 1: Intro ---- */
+.mun__intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.mun__intro-text .mun__heading {
+  margin-bottom: 32px;
+}
+
+.mun__pillars {
+  list-style: none;
+  margin: 24px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mun__pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.mun__pillar:last-child {
+  border-bottom: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.mun__pillar-title {
+  font-family: 'Crimson Text', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--triadic2);
+}
+
+.mun__pillar-body {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  line-height: 160%;
+  color: var(--triadic1);
+}
+
+/* ---- Section 2: Leadership ---- */
+.mun__lead-intro {
+  max-width: 720px;
+  margin-bottom: 56px;
+}
+
+.mun__officers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.mun__officer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mun__officer-photo {
+  margin: 0;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 0 0 130px 0;
+}
+
+.mun__officer:nth-child(2) .mun__officer-photo {
+  border-radius: 130px 0 130px 0;
+}
+
+.mun__officer:nth-child(3) .mun__officer-photo {
+  border-radius: 130px 0 0 0;
+}
+
+.mun__officer-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease-in-out;
+}
+
+.mun__officer-photo:hover img {
+  transform: scale(1.03);
+}
+
+.mun__officer-role {
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--complement);
+}
+
+.mun__officer-name {
+  font-family: 'Crimson Text', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--triadic2);
+  margin: 8px 0 12px 0;
+}
+
+.mun__officer-bio {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  line-height: 160%;
+  letter-spacing: 0.5px;
+  color: var(--triadic1);
+  margin: 0;
+}
+
+/* ---- Section 3: Conferences ---- */
+.mun__conf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.mun__conf {
+  padding: 48px 48px 48px 0;
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mun__conf:nth-child(even) {
+  padding: 48px 0 48px 48px;
+  border-left: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.mun__conf--featured .mun__conf-name {
+  color: var(--primary);
+}
+
+.mun__conf-num {
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  letter-spacing: 3px;
+  color: var(--complement);
+}
+
+.mun__conf-name {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(32px, 3vw, 46px);
+  font-weight: 600;
+  line-height: 100%;
+  color: var(--triadic2);
+  margin: 4px 0 0 0;
+}
+
+.mun__conf-full {
+  font-family: 'Crimson Text', serif;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(var(--info-rgb), 0.5);
+  margin: 0 0 8px 0;
+}
+
+.mun__conf-desc {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  line-height: 165%;
+  letter-spacing: 0.5px;
+  color: var(--triadic1);
+  margin: 0;
+}
+
+.mun__conf-desc strong {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 700;
+  color: var(--triadic2);
+}
+
+/* ---- Section 4: WJMUN ---- */
+.mun__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.mun__figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0 0 130px 0;
+}
+
+.mun__figure--wide {
+  width: 100%;
+  aspect-ratio: 16/7;
+}
+
+.mun__figure--wide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease-in-out;
+}
+
+.mun__figure--wide:hover img {
+  transform: scale(1.03);
+}
+
+.mun__duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.mun__duo .mun__figure {
+  aspect-ratio: 4/3;
+}
+
+.mun__duo .mun__figure:first-child {
+  border-radius: 0 0 130px 0;
+}
+
+.mun__duo .mun__figure:last-child {
+  border-radius: 130px 0 0 0;
+}
+
+.mun__duo .mun__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease-in-out;
+}
+
+.mun__duo .mun__figure:hover img {
+  transform: scale(1.03);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .mun__intro-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .mun__officers {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mun__officer:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mun__conf-grid {
+    grid-template-columns: 1fr;
+  }
+  .mun__conf:nth-child(even) {
+    padding: 48px 0;
+    border-left: none;
+  }
+  .mun__conf {
+    padding: 48px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .mun__officers {
+    grid-template-columns: 1fr;
+  }
+  .mun__officer:nth-child(3) {
+    max-width: 100%;
+    grid-column: auto;
+  }
+  .mun__officer-photo {
+    border-radius: 0 0 60px 0;
+  }
+  .mun__officer:nth-child(2) .mun__officer-photo {
+    border-radius: 60px 0 60px 0;
+  }
+  .mun__officer:nth-child(3) .mun__officer-photo {
+    border-radius: 60px 0 0 0;
+  }
+  .mun__duo {
+    grid-template-columns: 1fr;
+  }
+  .mun__duo .mun__figure:first-child {
+    border-radius: 0 0 60px 0;
+  }
+  .mun__duo .mun__figure:last-child {
+    border-radius: 60px 0 0 0;
+  }
+  .mun__figure--wide {
+    aspect-ratio: 4/3;
+    border-radius: 0 0 60px 0;
+  }
+}
+
+/* ==================== Safeguarding (sfg__) ==================== */
+/* ---- Shared ---- */
+#sfg_intro,
+#sfg_protection,
+#sfg_bullying,
+#sfg_wellbeing,
+#sfg_hiring {
+  padding: 6vw 0;
+}
+
+.sfg__eyebrow {
+  display: inline-block;
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--complement);
+  margin-bottom: 16px;
+}
+
+.sfg__heading {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(46px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 110%;
+  text-transform: uppercase;
+  color: var(--triadic2);
+  margin: 0 0 48px 0;
+}
+
+.sfg__body {
+  max-width: 720px;
+}
+
+.sfg__para {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 170%;
+  letter-spacing: 0.5px;
+  color: var(--triadic1);
+  margin: 0 0 24px 0;
+}
+
+.sfg__para:last-child {
+  margin-bottom: 0;
+}
+
+/* the reset sets strong to 16px, so inherit the paragraph size */
+.sfg__para strong {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 700;
+  color: var(--triadic2);
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+/* ---- Sections 1-2: text + list ---- */
+.sfg__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.sfg__text .sfg__heading {
+  margin-bottom: 32px;
+}
+
+.sfg__list {
+  margin: 8px 0 0 0;
+}
+
+.sfg__item {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  line-height: 160%;
+  color: var(--triadic1);
+  padding: 20px 0;
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.sfg__item:last-child {
+  border-bottom: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.sfg__note {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 160%;
+  color: var(--triadic1);
+  margin: 24px 0 0 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .sfg__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* ==================== Strategic Plan (stp__) ==================== */
+/* ---- Shared ---- */
+#stp_intro,
+#stp_plan,
+#stp_roadmap,
+#stp_developments {
+  padding: 6vw 0 0 0;
+}
+
+#stp_document {
+  padding: 6vw 0;
+}
+
+.stp__title {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(46px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 110%;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--triadic2);
+  margin: 0 0 16px 0;
+}
+
+.stp__subtitle {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 140%;
+  text-align: center;
+  color: var(--complement);
+  max-width: 820px;
+  margin: 0 auto 48px auto;
+}
+
+.stp__section-heading {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 600;
+  line-height: 110%;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--triadic2);
+  margin: 0 0 8px 0;
+}
+
+.stp__section-sub {
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  color: var(--complement);
+  margin: 0 0 48px 0;
+}
+
+.stp__body {
+  max-width: 820px;
+  margin: 0 auto 48px auto;
+}
+
+.stp__body p,
+.stp__split-col p {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 170%;
+  letter-spacing: 0.5px;
+  color: var(--triadic1);
+  margin: 0 0 20px 0;
+}
+
+.stp__body strong {
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: normal;
+  font-weight: 700;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  color: var(--triadic2);
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.stp__label {
+  font-family: 'Crimson Text', serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 130%;
+  text-align: center;
+  color: var(--triadic2);
+  margin: 0 0 20px 0;
+}
+
+/* ---- Accordions ---- */
+.stp__accordion {
+  border-bottom: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.stp__panel {
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.stp__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  position: relative;
+  padding: 20px 0 20px 48px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.stp__summary::-webkit-details-marker {
+  display: none;
+}
+
+/* +/- icon drawn with two bars (no glyphs, so the CMS can't mangle it) */
+.stp__summary::before,
+.stp__summary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  width: 18px;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--primary);
+  transition: transform 0.3s ease-in-out;
+}
+
+.stp__summary::after {
+  transform: rotate(90deg);
+}
+
+.stp__panel[open] > .stp__summary::after {
+  transform: rotate(0deg);
+}
+
+.stp__summary-title {
+  font-family: 'Crimson Text', serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 130%;
+  color: var(--triadic2);
+  transition: color 0.3s ease-in-out;
+}
+
+.stp__summary:hover .stp__summary-title {
+  color: var(--primary);
+}
+
+.stp__badge {
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--primary);
+}
+
+/* Larger variant for the strategic areas */
+.stp__panel--area > .stp__summary {
+  padding: 24px 0 24px 56px;
+}
+
+.stp__panel--area > .stp__summary::before,
+.stp__panel--area > .stp__summary::after {
+  width: 24px;
+}
+
+.stp__summary-label {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--complement);
+}
+
+.stp__panel--area .stp__summary-title {
+  font-size: clamp(24px, 2.2vw, 32px);
+  text-transform: uppercase;
+}
+
+.stp__panel--area[open] > .stp__summary .stp__summary-title {
+  color: var(--primary);
+}
+
+/* ---- Section 2: Strategic areas ---- */
+.stp__area {
+  padding: 16px 0 56px 0;
+}
+
+.stp__goal {
+  max-width: 820px;
+  margin: 0 auto 48px auto;
+  padding: 40px 48px;
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+  border-bottom: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.stp__goal .stp__label {
+  margin-bottom: 12px;
+}
+
+.stp__goal-text {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(22px, 1.8vw, 28px);
+  font-weight: 600;
+  line-height: 145%;
+  text-align: center;
+  color: var(--triadic2);
+  margin: 0;
+}
+
+.stp__objectives {
+  list-style: none;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.stp__objectives li {
+  break-inside: avoid;
+  font-family: 'Crimson Text', serif;
+  font-size: 20px;
+  line-height: 150%;
+  color: var(--triadic1);
+  padding: 16px 0;
+  border-top: 1px solid rgba(var(--info-rgb), 0.15);
+}
+
+.stp__objective-code {
+  display: inline-block;
+  min-width: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: oblique;
+  letter-spacing: 1px;
+  color: var(--complement);
+}
+
+.stp__objective-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--triadic2);
+}
+
+.stp__objective-desc {
+  font-size: 18px;
+  line-height: 160%;
+  color: var(--triadic1);
+  margin: 6px 0 0 0;
+}
+
+/* ---- Section 4: Roadmap ---- */
+.stp__phase {
+  padding: 8px 0 40px 48px;
+}
+
+.stp__phase-heading {
+  font-family: 'Crimson Text', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--triadic2);
+  margin: 0 0 16px 0;
+}
+
+.stp__list {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+.stp__list li {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  line-height: 160%;
+  letter-spacing: 0.5px;
+  color: var(--triadic1);
+  padding: 4px 0;
+}
+
+.stp__list li::marker {
+  color: var(--complement);
+}
+
+/* ---- Section 3: Developments ---- */
+.stp__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* ---- Section 5: Full document ---- */
+.stp__cta {
+  text-align: center;
+}
+
+.stp__button {
+  display: inline-block;
+  font-family: 'Crimson Text', serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: var(--primary);
+  padding: 16px 40px;
+  border: 2px solid var(--primary);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.stp__button:hover {
+  background: rgba(var(--info-rgb), 0.06);
+}
+
+.stp__back {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.stp__back-link {
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: oblique;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: var(--complement);
+}
+
+.stp__back-link:hover {
+  color: var(--primary);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .stp__split {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stp__goal {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .stp__panel--area > .stp__summary {
+    padding: 24px 0 24px 40px;
+  }
+  .stp__summary {
+    padding-left: 40px;
+  }
+  .stp__summary::before,
+  .stp__summary::after {
+    left: 4px;
+  }
+  .stp__phase {
+    padding-left: 0;
+  }
+}

@@ -1,0 +1,47 @@
+<!--
+  CMS embed stub: reference only, not a hosted page.
+
+  Paste the block below into a CMS page (source/HTML view), then fill in:
+    PAGE.html   the file name, e.g. mun.html
+    PAGE TITLE  the iframe title, e.g. Model United Nations
+    HEIGHTS     the matching line from the table below (goes inside style="...")
+
+  The CMS strips <script>, so the iframe can't size itself to its content and the heights
+  are fixed. They were measured (Oct 2026, all accordions closed) at the real width of the
+  CMS content column in each screen band, plus 40px:
+    --h1 >=1441px (column 1260)   --h2 1181-1440 (1004)   --h3 1025-1180 (796-920)
+    --h4 841-1024 (641-795)       --h5 641-840 (489-640)  --h6 481-640 (376-488)
+    --h7 <=480 (phones, ~285-376)
+  Re-measure after big content changes with tools/measure_heights.sh <page>. If an accordion or tab makes the page taller,
+  scrolling="auto" lets the visitor scroll inside the frame.
+
+  accreditation   --h1:2010px;--h2:1930px;--h3:1970px;--h4:2080px;--h5:2080px;--h6:2350px;--h7:2710px;
+  administration  --h1:4780px;--h2:5390px;--h3:18200px;--h4:16720px;--h5:15050px;--h6:13730px;--h7:13470px;
+  faculty         --h1:85vh;--h2:85vh;--h3:85vh;--h4:85vh;--h5:85vh;--h6:85vh;--h7:85vh;
+                  (its tabs range from 1,200px to 13,700px tall, so it gets a window that scrolls inside)
+  mll             --h1:3340px;--h2:3560px;--h3:3610px;--h4:3800px;--h5:4260px;--h6:4830px;--h7:5670px;
+  mun             --h1:5610px;--h2:6410px;--h3:6460px;--h4:6830px;--h5:9190px;--h6:9340px;--h7:10470px;
+  safeguarding    --h1:4310px;--h2:4390px;--h3:4450px;--h4:4900px;--h5:5740px;--h6:6910px;--h7:8700px;
+  strategic_plan  --h1:3450px;--h2:3400px;--h3:3750px;--h4:3960px;--h5:4640px;--h6:5490px;--h7:6650px;
+
+  Credit line: it sits in the CMS page (www.tyas.tyc.edu.tw), not inside the iframe, so search
+  engines count the link as part of the school page. It is a plain, followed link with
+  descriptive text and schema.org Person microdata. It is small and muted but still readable.
+  Text or links that are hidden or nearly invisible count as spam in Google's guidelines
+  and can get the link ignored, so don't make it fainter.
+-->
+
+<div class="tyas-embed" style="HEIGHTS"><iframe loading="lazy" scrolling="auto" src="https://portal.tyas.tyc.edu.tw/website/PAGE.html" title="PAGE TITLE"></iframe>
+<p class="tyas-credit" itemscope="" itemtype="https://schema.org/Person">This page is created and maintained by <a href="https://joshmzndev.com" itemprop="url" rel="author noopener" target="_blank"><span itemprop="name">Josh Manzano</span> (joshmzndev.com)</a></p>
+</div>
+<style type="text/css">.tyas-embed iframe { display: block; width: 100%; min-height: 700px; border: 0; height: var(--h1); }
+@media (max-width: 1440px) { .tyas-embed iframe { height: var(--h2); } }
+@media (max-width: 1180px) { .tyas-embed iframe { height: var(--h3); } }
+@media (max-width: 1024px) { .tyas-embed iframe { height: var(--h4); } }
+@media (max-width: 840px) { .tyas-embed iframe { height: var(--h5); } }
+@media (max-width: 640px) { .tyas-embed iframe { height: var(--h6); } }
+@media (max-width: 480px) { .tyas-embed iframe { height: var(--h7); } }
+.tyas-embed .tyas-credit, .tyas-embed .tyas-credit a, .tyas-embed .tyas-credit span { margin: 0; padding: 4px 0 0; font-family: "Crimson Text", serif; font-size: 12px; line-height: 150%; color: #8a8a8a; text-align: right; text-decoration: none; }
+.tyas-embed .tyas-credit a, .tyas-embed .tyas-credit span { padding: 0; }
+.tyas-embed .tyas-credit a:hover, .tyas-embed .tyas-credit a:hover span { text-decoration: underline; }
+</style>
