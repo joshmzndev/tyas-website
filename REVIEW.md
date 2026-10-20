@@ -1,15 +1,15 @@
 # Review: items that need a person
 
-These came out of the October 2026 refactor (see REFACTOR.md). Everything that could be fixed safely in the repo has been fixed. The list of fixes is at the end.
+These came out of the October 2026 refactor passes (see REFACTOR.md). Everything that could be fixed safely in the repo has been fixed; the latest pass's fixes are listed at the end, and earlier ones are in git history.
 
 ## Urgent
 
 1. **Private files are publicly readable on the portal.** The old `deploy.sh` ran `scp -r *`, which uploaded every repo file. These currently return 200 at `https://portal.tyas.tyc.edu.tw/website/`: `CLAUDE.md`, `REFACTOR.md`, `deploy.sh` (it shows the `root@172.16.11.32` login and path) and `cms_stubs.html`. Once README.md and REVIEW.md exist they would be uploaded too. `deploy.sh` now uploads only the pages, `css/`, `images/` and `pdf/`, but the files already on the server must be **deleted by hand**. Also consider using a non-root deploy account.
-2. **Re-deploy and update the CMS heights.** Every modern page's layout changed slightly, and safeguarding was rebuilt. After you run `./deploy.sh`, paste the new height lines from `cms_stubs.html` into the CMS stubs for accreditation, administration, mll, mun, safeguarding and strategic_plan. Old heights would cut off or pad the pages. Safeguarding was rebuilt again from the Phase 1 copy and is now about 9060px tall on desktop (it was 4310px).
+2. **Re-deploy and update the CMS heights.** Every modern page changed height, mostly on phones (headings now shrink to fit), and MUN lost its officer photos. After you run `./deploy.sh`, paste the new height lines from `cms_stubs.html` into the CMS stubs for accreditation, administration, mll, mun, safeguarding and strategic_plan. Old heights would cut off or pad the pages. Safeguarding is about 9090px tall on desktop (the live page was 4310px).
+3. **A local settings file gets uploaded.** `deploy.sh` copies all of `images/`, including the hidden `images/faculty/.claude/settings.local.json` (old AI-tool settings that show local usernames and paths). Delete that folder, and `_originals/faculty/.claude/`, before the next deploy, and remove it from the server if it's there.
 
 ## Content: needs school input
 
-3. **MUN officer photos are missing (404):** `userfiles/images/article/mun/jonus.jpg`, `morris.jpg` and `vincent.jpg`. Upload them to the CMS, or send the files so they can go into `images/mun/`.
 4. **Missing local photos:** eight administration staff have no file in `images/faculty/`: Sandy Chen, Sun Liu, Chloris Wu, Joyce Tseng, Michelle Yeon, Robin Liu, Kathy Lin and Tony Hsieh. They still display from the CMS. **Leo Lee** (administration) shows the `anon.jpg` placeholder and has no job title. `images/faculty/llee.jpg` exists locally but isn't on the CMS. Upload it (it's 7.7 MB, so resize it first) and supply a title.
 5. **Photo swaps to confirm:** Adam Hsieh and Jessica Hung now use `people_photos/ahsieh.jpg` and `jhung.jpg`. Both were already uploaded to the CMS and match the local staging photos. Before this, Adam showed the placeholder and Jessica an older photo. Revert if that was intentional.
 6. **Staff data to double-check:** Joyce Tseng's email is `finance@` (the same as Sandy Chen's). The names don't match the email or photo handles for Aline Zanetti (`apessoa`), Jeffrey Sebastian (`sreyesmelgar`), Sam Craiglee (`csam`) and Melody Ouyang (`houyang`). They may be correct.
@@ -34,41 +34,24 @@ These came out of the October 2026 refactor (see REFACTOR.md). Everything that c
 ## Design decisions
 
 10. **Two title styles.** Accreditation and Strategic Plan use a centered title and italic subtitle. The other pages use eyebrow + two-line left-aligned heading. Both are now documented. Converting acc/stp to the main style would make every page consistent; say if you want it.
-11. **Strategic plan button** (`.stp__button`) has a 2px blue border, which breaks the "1px hairlines only" rule. It was kept because a hairline makes a weak call to action. The goal boxes lost their grey fill and 3px top border; they now use hairlines.
+11. **Strategic plan button** (`.stp__button`) has a 2px blue border, which breaks the "1px hairlines only" rule. It was kept because a hairline makes a weak call to action. Its grey hover fill is gone; it now changes colour on hover like the safeguarding button.
 12. **MLL logo frames** (`.mll__diagram`, `.mll__credit-logo`, `.mll__research-logo`) are white boxes with a rounded corner. They're borderline under "no rounded boxes", but they stop the logos from floating on the page. They were kept.
 13. **Staff pages (administration, faculty)** still use the copied live-site CSS, with hex greys and repeated IDs (`#articleInfo16`, `#AB001`…). These are left alone so they match the rest of the CMS. Rebuilding them on the modern design is a separate project.
-14. **Faculty tabs** are `<a onclick>` with no `href`, so keyboard users can't reach them, and there's no "active tab" state. A small fix would be `href="#boxN" target="_self"` plus `return false`, and an active class.
-15. **Staging photos in `images/faculty/`** (about 24 MB; `ahsieh.jpg` and `llee.jpg` are over 6 MB) get deployed but no page uses them. Consider moving them out of `images/`, e.g. to `photos_to_upload/`. Also delete the stray `images/faculty/.claude/` folder (old local tool settings). The automated session wasn't allowed to delete it.
+14. **Unused images get deployed.** No page uses `images/faculty/` (11 MB of CMS staging photos; `eteng.jpg` and `eteng.jpeg` are identical) or `images/other/` (212 files, 60 MB, CMS image downloads). Both are uploaded on every deploy. If nothing outside this repo links to them on the portal, move them to `_originals/` so they stop being deployed.
+15. **Heading levels skip.** Accreditation and Strategic Plan use `h4` labels under `h2` titles, and their italic subtitles are `h3`s. It looks right, but screen readers announce an odd outline. Fixing it means changing tags only; the classes already set the look.
 
 ## Fixed in this pass
 
-- `deploy.sh` now uploads only the hosted files.
-- **People pages:**
-  - Michelle Yeon's email link went to `crand@`; it now goes to `myeon@`.
-  - Fixed the `mailto: finance@` link (it had a space).
-  - Removed stray spaces and `&nbsp;` around emails and a stray `<br />` before Sun Liu's photo.
-  - Hui-Ya Chang's photo was a 404 (`.jpeg` instead of `.jpg`).
-  - "Matt ZUHL" is now "Matt Zuhl".
-  - Every staff photo now has `alt` text.
-- **MUN:**
-  - `strong` text rendered at 16px inside larger paragraphs.
-  - The first officer photo kept a 130px corner on phones.
-  - Hover zoom was 1.04 instead of 1.03.
-  - Removed a dead `--featured` rule.
-  - Renamed `#mun_section` to `#mun_wjmun`.
-  - Wording: added the first TYAS mention, expanded "NGOs", and fixed "Japan, and Korea" and "first ever".
+- **Phone headings:** the big uppercase headings on every modern page broke mid-word at phone widths ("MULTILINGU-AL", "ACCREDITATI-ON"). They now shrink to `clamp(26px, 9vw, 46px)` at 640px and below. Safeguarding already had a fix, but it still broke on the narrowest phones.
+- **Faculty tabs** are now real links (`href="#boxN"`), so keyboard users can reach them, and the selected tab stays highlighted.
 - **Strategic plan:**
-  - Objective titles rendered at 16px.
-  - Descriptions were grey instead of body blue.
-  - Fixed off-scale sizes (13px, 19px, 28px).
-  - Section comments were numbered in the wrong order.
-- **MLL:** fixed off-scale sizes (17px, 2px gaps, 2px letter spacing) and the heading margin. Added the first TYAS mention.
-- **Accreditation:** removed an unused placeholder class, used the lead text size, and added the first TYAS mention and the ACS WASC expansion.
-- **Safeguarding:** rebuilt on the shared design. The text is unchanged apart from TYAS naming.
-- **All CSS:**
-  - Changed the `'Crimson Text', sans-serif` fallback to `serif`.
-  - Replaced `#fff` with `var(--white)`.
-  - The body text on acc and stp now uses the standard lead size.
-- **Docs:**
-  - Shortened CLAUDE.md and added README.md.
-  - Re-measured `cms_stubs.html` heights with the new `tools/measure_heights.sh`. The administration phone height was 90px short.
+  - Roadmap lists had a 20px indent and marker colour, but the reset hides list bullets, so the lists were just indented. Removed both.
+  - Open roadmap panels now highlight their title, like the strategic areas and the safeguarding accordions.
+  - Objective code, title and description now set their font, as every other text class does.
+  - CSS sections were in the wrong order (4 before 3).
+- **MUN:** officer cards are now `<article>`s without the extra wrapper. The WJMUN wide photo now has a top-left leaf corner, so it alternates with the photo pair below it.
+- **MLL:** tier titles were 24px; they're now the 28px card-title size. The MLRC logo moved to `images/mll/`.
+- **Accreditation:** removed dead `embed`/`object` selectors, used `&#39;` instead of `&rsquo;`, and sorted the iframe attributes.
+- **CSS:** added a note that most `--*-rgb` values are wrong.
+- **Makefile:** the target was `start`, but the comment and `.PHONY` said `serve`. Both names work now.
+- **Docs:** tightened CLAUDE.md, documented `_originals/`, `images/other/` and `make serve` in README.md, and re-measured every height in `cms_stubs.html`.

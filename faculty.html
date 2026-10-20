@@ -12,19 +12,19 @@
 <div class="catBox" id="sideNav2">
 <ul class="Cate">
 	<li>
-	<h3><a onclick="showStoreInfo('box1')">Vice Principal</a></h3>
+	<h3><a class="active" href="#box1" onclick="return showStoreInfo('box1')" target="_self">Vice Principal</a></h3>
 	</li>
 	<li>
-	<h3><a onclick="showStoreInfo('box2')">Elementary School</a></h3>
+	<h3><a href="#box2" onclick="return showStoreInfo('box2')" target="_self">Elementary School</a></h3>
 	</li>
 	<li>
-	<h3><a onclick="showStoreInfo('box3')">Middle &amp; High School </a></h3>
+	<h3><a href="#box3" onclick="return showStoreInfo('box3')" target="_self">Middle &amp; High School</a></h3>
 	</li>
 	<li>
-	<h3><a onclick="showStoreInfo('box4')">Special Subject </a></h3>
+	<h3><a href="#box4" onclick="return showStoreInfo('box4')" target="_self">Special Subject</a></h3>
 	</li>
 	<li>
-	<h3><a onclick="showStoreInfo('box5')">MLL Program </a></h3>
+	<h3><a href="#box5" onclick="return showStoreInfo('box5')" target="_self">MLL Program</a></h3>
 	</li>
 </ul>
 </div>
@@ -934,6 +934,10 @@ function showStoreInfo(id) {
   document.querySelectorAll('.store-content').forEach(function (el) {
     el.style.display = el.id === id ? 'block' : 'none';
   });
+  document.querySelectorAll('#sideNav2 a').forEach(function (a) {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+  });
+  return false;
 }
 </script>
 </body>

@@ -9,6 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
 
 /* ==================== Site base (copied from live /css/39/root.css + main.css) ==================== */
+/* Only --info-rgb, --white-rgb and --black-rgb match their colours; the other -rgb values are wrong on the live site too, so don't use them. */
 :root {
 	--primary: #0f48bc;
 	--primary-rgb: 177, 151, 119;
@@ -52,8 +53,8 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
 #sideNav2 >ul >li >h3{display:block}
 #sideNav2 >ul >li >h3 a{color:#000000;border:1px solid #9f9f9f;line-height:50px;padding:0 20px;border-radius:45px;display:block;position:relative;overflow:hidden;transition:0.6s;letter-spacing:1px;margin:5px;font-size:15px;font-weight:400;text-align:center;cursor:pointer;z-index:0}
 #sideNav2 >ul >li >h3 a:after{content:"";display:block;position:absolute;top:0;left:0;width:0%;height:100%;background:var(--primary);z-index:-1;transition:0.6s}
-#sideNav2 >ul >li >h3 a:hover{color:#ffffff}
-#sideNav2 >ul >li >h3 a:hover:after{width:100%}
+#sideNav2 >ul >li >h3 a:hover,#sideNav2 >ul >li >h3 a.active{color:#ffffff}
+#sideNav2 >ul >li >h3 a:hover:after,#sideNav2 >ul >li >h3 a.active:after{width:100%}
 
 /* faculty tabs: showStoreInfo() in faculty.html switches the visible box */
 .store-content { display: none; }
@@ -170,9 +171,7 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
   border: 1px solid rgba(var(--info-rgb), 0.15);
 }
 
-.acc__embed iframe,
-.acc__embed embed,
-.acc__embed object {
+.acc__embed iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -203,6 +202,10 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
 
 /* ---- Responsive ---- */
 @media (max-width: 640px) {
+  /* long uppercase words ("ACCREDITATION") would otherwise break mid-word on phones */
+  .acc__title {
+    font-size: clamp(26px, 9vw, 46px);
+  }
   .acc__embed {
     height: 70vh;
     min-height: 400px;
@@ -327,8 +330,9 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
 
 .mll__tier-title {
   font-family: 'Crimson Text', serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
+  line-height: 130%;
   color: var(--triadic2);
   margin: 4px 0 4px 0;
 }
@@ -450,6 +454,10 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
 }
 
 @media (max-width: 640px) {
+  /* long uppercase words ("MULTILINGUAL") would otherwise break mid-word on phones */
+  .mll__heading {
+    font-size: clamp(26px, 9vw, 46px);
+  }
   .mll__credit {
     flex-direction: column;
     align-items: flex-start;
@@ -568,41 +576,9 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
 
 .mun__officers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
-}
-
-.mun__officer {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.mun__officer-photo {
-  margin: 0;
-  aspect-ratio: 3/4;
-  overflow: hidden;
-  border-radius: 0 0 130px 0;
-}
-
-.mun__officer:nth-child(2) .mun__officer-photo {
-  border-radius: 130px 0 130px 0;
-}
-
-.mun__officer:nth-child(3) .mun__officer-photo {
-  border-radius: 130px 0 0 0;
-}
-
-.mun__officer-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease-in-out;
-}
-
-.mun__officer-photo:hover img {
-  transform: scale(1.03);
+  max-width: 840px;
 }
 
 .mun__officer-role {
@@ -731,6 +707,11 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
   transform: scale(1.03);
 }
 
+/* top-left leaf so it alternates with the duo below it */
+.mun__content .mun__figure--wide {
+  border-radius: 130px 0 0 0;
+}
+
 .mun__duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -767,13 +748,6 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
     grid-template-columns: 1fr;
     gap: 48px;
   }
-  .mun__officers {
-    grid-template-columns: 1fr 1fr;
-  }
-  .mun__officer:nth-child(3) {
-    grid-column: 1 / -1;
-    max-width: 400px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -790,21 +764,12 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
 }
 
 @media (max-width: 640px) {
+  /* long uppercase words ("CONFERENCE") would otherwise break mid-word on phones */
+  .mun__heading {
+    font-size: clamp(26px, 9vw, 46px);
+  }
   .mun__officers {
     grid-template-columns: 1fr;
-  }
-  .mun__officer:nth-child(3) {
-    max-width: 100%;
-    grid-column: auto;
-  }
-  .mun__officer-photo {
-    border-radius: 0 0 60px 0;
-  }
-  .mun__officer:nth-child(2) .mun__officer-photo {
-    border-radius: 60px 0 60px 0;
-  }
-  .mun__officer:nth-child(3) .mun__officer-photo {
-    border-radius: 60px 0 0 0;
   }
   .mun__duo {
     grid-template-columns: 1fr;
@@ -818,6 +783,9 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
   .mun__figure--wide {
     aspect-ratio: 4/3;
     border-radius: 0 0 60px 0;
+  }
+  .mun__content .mun__figure--wide {
+    border-radius: 60px 0 0 0;
   }
 }
 
@@ -1388,9 +1356,9 @@ a.sfg__link:hover {
 }
 
 @media (max-width: 640px) {
-  /* "SAFEGUARDING" is wider than a phone at the 46px minimum */
+  /* long uppercase words ("SAFEGUARDING") would otherwise break mid-word on phones */
   .sfg__heading {
-    font-size: clamp(32px, 10vw, 46px);
+    font-size: clamp(26px, 9vw, 46px);
   }
   .sfg__photo {
     max-width: 320px;
@@ -1583,7 +1551,8 @@ a.sfg__link:hover {
   transition: color 0.3s ease-in-out;
 }
 
-.stp__summary:hover .stp__summary-title {
+.stp__summary:hover .stp__summary-title,
+.stp__panel[open] > .stp__summary .stp__summary-title {
   color: var(--primary);
 }
 
@@ -1618,10 +1587,6 @@ a.sfg__link:hover {
 .stp__panel--area .stp__summary-title {
   font-size: clamp(24px, 2.2vw, 32px);
   text-transform: uppercase;
-}
-
-.stp__panel--area[open] > .stp__summary .stp__summary-title {
-  color: var(--primary);
 }
 
 /* ---- Section 2: Strategic areas ---- */
@@ -1671,6 +1636,7 @@ a.sfg__link:hover {
 .stp__objective-code {
   display: inline-block;
   min-width: 40px;
+  font-family: 'Crimson Text', serif;
   font-size: 15px;
   font-weight: 600;
   font-style: oblique;
@@ -1679,16 +1645,26 @@ a.sfg__link:hover {
 }
 
 .stp__objective-title {
+  font-family: 'Crimson Text', serif;
   font-size: 20px;
   font-weight: 600;
   color: var(--triadic2);
 }
 
 .stp__objective-desc {
+  font-family: 'Crimson Text', serif;
   font-size: 18px;
   line-height: 160%;
   color: var(--triadic1);
   margin: 6px 0 0 0;
+}
+
+/* ---- Section 3: Developments ---- */
+.stp__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
 }
 
 /* ---- Section 4: Roadmap ---- */
@@ -1704,11 +1680,6 @@ a.sfg__link:hover {
   margin: 0 0 16px 0;
 }
 
-.stp__list {
-  margin: 0;
-  padding: 0 0 0 20px;
-}
-
 .stp__list li {
   font-family: 'Crimson Text', serif;
   font-size: 18px;
@@ -1716,18 +1687,6 @@ a.sfg__link:hover {
   letter-spacing: 0.5px;
   color: var(--triadic1);
   padding: 4px 0;
-}
-
-.stp__list li::marker {
-  color: var(--complement);
-}
-
-/* ---- Section 3: Developments ---- */
-.stp__split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
 }
 
 /* ---- Section 5: Full document ---- */
@@ -1746,11 +1705,12 @@ a.sfg__link:hover {
   color: var(--primary);
   padding: 16px 40px;
   border: 2px solid var(--primary);
-  transition: background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 .stp__button:hover {
-  background: rgba(var(--info-rgb), 0.06);
+  color: var(--triadic2);
+  border-color: var(--triadic2);
 }
 
 .stp__back {
@@ -1788,6 +1748,13 @@ a.sfg__link:hover {
 }
 
 @media (max-width: 640px) {
+  /* long uppercase words ("DEVELOPMENT") would otherwise break mid-word on phones */
+  .stp__title {
+    font-size: clamp(26px, 9vw, 46px);
+  }
+  .stp__section-heading {
+    font-size: clamp(24px, 8vw, 36px);
+  }
   .stp__panel--area > .stp__summary {
     padding: 24px 0 24px 40px;
   }
