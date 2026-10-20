@@ -11,10 +11,10 @@ The school's CMS is hard to edit and removes any JavaScript, so these pages are 
 | `accreditation.html`, `mll.html`, `mun.html`, `safeguarding.html`, `strategic_plan.html` | Content pages in the current design. Copy one of these when you start a new page. |
 | `administration.html`, `faculty.html` | Staff directory pages in the older CMS layout. Their photos are hosted on the CMS. |
 | `css/tyas.css` | The one stylesheet for every page. |
-| `images/`, `pdf/` | Images and PDFs used by the pages, in one folder per page (e.g. `images/mll/`). `images/faculty/` holds staff photos waiting to be uploaded to the CMS, one per person, named first initial + last name in lowercase (e.g. `eteng.jpg`). No page uses them directly, and no page uses `images/other/` either. |
+| `images/`, `pdf/` | Images and PDFs used by the pages, in one folder per page (e.g. `images/mll/`). `images/faculty/` holds the staff photos used by `administration.html` and `faculty.html`, one per person, named first initial + last name in lowercase (e.g. `eteng.jpg`). No page uses `images/other/`. |
 | `_originals/` | Source material: the original copy documents and full-size photos the pages were built from. Not uploaded. |
 | `cms_stubs.html` | The snippet to paste into a CMS page, plus the iframe heights for each page. Not uploaded. |
-| `deploy.sh` | Uploads the pages, CSS, images and PDFs to the portal server. |
+| `Makefile` | `make serve` previews locally; `make deploy` uploads the pages, CSS, images and PDFs to the portal server. |
 | `tools/` | `measure_heights.sh` works out the iframe heights for `cms_stubs.html`. |
 | `Makefile` | `make serve` starts a local preview at http://localhost:8000/. |
 | `CLAUDE.md` | The detailed coding and design rules, written for AI assistants. |
@@ -25,7 +25,7 @@ The school's CMS is hard to edit and removes any JavaScript, so these pages are 
 1. Edit the `.html` file. Put all styling in `css/tyas.css`, inside that page's block (each page has its own class prefix, such as `mun__` for the MUN page).
 2. Run `make serve` and open the page at http://localhost:8000/ to check it. Check a narrow phone-sized window too.
 3. If the page got noticeably longer or shorter, update its iframe heights (see below).
-4. Run `./deploy.sh` to upload.
+4. Run `make deploy` to upload.
 
 ## Adding a page to the CMS
 
