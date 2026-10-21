@@ -3,14 +3,14 @@
 Standalone pages for https://www.tyas.tyc.edu.tw, hosted at `https://portal.tyas.tyc.edu.tw/website/<page>.html` and embedded in the CMS by an iframe stub. README.md is the human guide; this file holds the rules. Open issues and decisions: REVIEW.md.
 
 ## Hard constraints
-- The CMS strips `<script>` but keeps `<style>`, inline `style=""` and `<iframe>`. The stub can't run JS, so no auto-resize or fetch-and-inject. JS inside hosted pages is fine (`showStoreInfo()` in `faculty.html`).
+- The CMS strips `<script>` but keeps `<style>`, inline `style=""` and `<iframe>`. The stub can't run JS, so no auto-resize or fetch-and-inject. JS inside hosted pages is fine (the staff search filter in `administration.html` and `faculty.html`).
 - `css/tyas.css` is the only stylesheet; site CSS doesn't reach into the iframe. Site classes (`col_*`, `d_flex`, `.more_btn`, Bootstrap, Font Awesome) don't exist. Add a rule to `tyas.css` before using a new class.
 - After a layout or content change, run `tools/measure_heights.sh <page>...` and paste the output into `cms_stubs.html` (one `--h1`…`--h7` line per page). Keep `scrolling="auto"` and a visible credit line.
 - `make deploy` uploads only root `*.html` (except `cms_stubs.html`), `css/`, `images/`, `pdf/`. Keep docs, tools and source material (`_originals/`) out of those folders.
 
 ## Files
 - Modern pages: `accreditation` (`acc__`), `mll` (`mll__`), `mun` (`mun__`), `safeguarding` (`sfg__`), `strategic_plan` (`stp__`). `acc`/`stp` use a centered title + italic subtitle; the rest use eyebrow + two-line `h2`.
-- Legacy staff pages: `administration`, `faculty` (`#articleInfo16` cards, repeated IDs, photos from relative `images/faculty/` paths). Their CSS is copied from the live site and keeps its hex colours on purpose.
+- Legacy staff pages: `administration`, `faculty` (`<html class="staff__page">` hides the frame scrollbar and pads the sides; a shared `staff__` search bar over `#articleInfo16` cards; `staff__group` headings with `staff__jump` buttons that scroll the CMS page to a group; both pages share the same script; repeated IDs, photos from relative `images/faculty/` paths). Their CSS is copied from the live site and keeps its hex colours on purpose.
 - `images/<prefix>/` for page images (relative paths). `images/faculty/` holds staff photos, one file per person named first initial + last name, lowercase (`hkan.jpg`). `images/other/` is unreferenced. `pdf/` is embedded via `<iframe src="pdf/...">`. `_originals/` holds source copy and full-size photos.
 
 ## Page rules

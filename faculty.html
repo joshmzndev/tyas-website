@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="staff__page" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -8,29 +8,29 @@
 <link href="css/tyas.css" rel="stylesheet" />
 </head>
 <body>
-<div id="articleInfo20">
-<div class="catBox" id="sideNav2">
-<ul class="Cate">
-	<li>
-	<h3><a class="active" href="#box1" onclick="return showStoreInfo('box1')" target="_self">Vice Principal</a></h3>
-	</li>
-	<li>
-	<h3><a href="#box2" onclick="return showStoreInfo('box2')" target="_self">Elementary School</a></h3>
-	</li>
-	<li>
-	<h3><a href="#box3" onclick="return showStoreInfo('box3')" target="_self">Middle &amp; High School</a></h3>
-	</li>
-	<li>
-	<h3><a href="#box4" onclick="return showStoreInfo('box4')" target="_self">Special Subject</a></h3>
-	</li>
-	<li>
-	<h3><a href="#box5" onclick="return showStoreInfo('box5')" target="_self">MLL Program</a></h3>
-	</li>
+<!-- ===== SEARCH ===== -->
+<div class="staff__search">
+<input aria-controls="staff_list" aria-label="Search faculty by name, title or bio" autocomplete="off" class="staff__search-input" data-noun="faculty" id="staff_search" placeholder="Search by name, title or bio" spellcheck="false" type="search" />
+
+<p aria-live="polite" class="staff__search-status" id="staff_status"></p>
+
+<nav aria-label="Jump to a section" class="staff__jump">
+<ul class="staff__jump-list">
+	<li><a class="staff__jump-link" href="#fac_vice_principal" target="_self">Vice Principal</a></li>
+	<li><a class="staff__jump-link" href="#fac_elementary" target="_self">Elementary School</a></li>
+	<li><a class="staff__jump-link" href="#fac_middle_high" target="_self">Middle &amp; High School</a></li>
+	<li><a class="staff__jump-link" href="#fac_special" target="_self">Special Subject</a></li>
+	<li><a class="staff__jump-link" href="#fac_mll" target="_self">MLL Program</a></li>
 </ul>
-</div>
+</nav>
 </div>
 
-<div class="store-content" id="box1">
+<div id="staff_list">
+
+<!-- ===== VICE PRINCIPAL ===== -->
+<section class="staff__group" id="fac_vice_principal">
+<h2 class="staff__group-title">Vice Principal</h2>
+
 <div id="articleInfo16">
 <div class="narrowfix" id="AB001">
 <div class="item">
@@ -78,9 +78,12 @@
 </div>
 </div>
 </div>
-</div>
+</section>
 
-<div class="store-content" id="box2">
+<!-- ===== ELEMENTARY SCHOOL ===== -->
+<section class="staff__group" id="fac_elementary">
+<h2 class="staff__group-title">Elementary School</h2>
+
 <div id="articleInfo16">
 <div class="narrowfix" id="AB002">
 <div class="item">
@@ -236,9 +239,12 @@ M: <a href="mailto:alubbe@tyas.tyc.edu.tw">alubbe@tyas.tyc.edu.tw</a></div>
 </div>
 </div>
 </div>
-</div>
+</section>
 
-<div class="store-content" id="box3">
+<!-- ===== MIDDLE & HIGH SCHOOL ===== -->
+<section class="staff__group" id="fac_middle_high">
+<h2 class="staff__group-title">Middle &amp; High School</h2>
+
 <div id="articleInfo16">
 <div class="narrowfix" id="AB003">
 <div class="item">
@@ -517,9 +523,12 @@ M: <a href="mailto:edeng@tyas.tyc.edu.tw">edeng@tyas.tyc.edu.tw</a></div>
 </div>
 </div>
 </div>
-</div>
+</section>
 
-<div class="store-content" id="box4">
+<!-- ===== SPECIAL SUBJECT ===== -->
+<section class="staff__group" id="fac_special">
+<h2 class="staff__group-title">Special Subject</h2>
+
 <div id="articleInfo16">
 <div class="narrowfix" id="AB004">
 <div class="item">
@@ -776,9 +785,12 @@ M: <a href="mailto:eshiue@tyas.tyc.edu.tw">eshiue@tyas.tyc.edu.tw</a></div>
 </div>
 </div>
 </div>
-</div>
+</section>
 
-<div class="store-content" id="box5">
+<!-- ===== MLL PROGRAM ===== -->
+<section class="staff__group" id="fac_mll">
+<h2 class="staff__group-title">MLL Program</h2>
+
 <div id="articleInfo16">
 <div class="narrowfix" id="AB005">
 <div class="item">
@@ -930,17 +942,58 @@ M: <a href="mailto:houyang@tyas.tyc.edu.tw">houyang@tyas.tyc.edu.tw</a></div>
 </div>
 </div>
 </div>
+</section>
 </div>
+
 <script>
-function showStoreInfo(id) {
-  document.querySelectorAll('.store-content').forEach(function (el) {
-    el.style.display = el.id === id ? 'block' : 'none';
+// Filter the staff cards by name, title and bio; every word typed must match.
+(function () {
+  var input = document.getElementById('staff_search');
+  var status = document.getElementById('staff_status');
+  var groups = document.querySelectorAll('.staff__group');
+
+  function normalize(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').toLowerCase();
+  }
+
+  var cards = Array.prototype.map.call(document.querySelectorAll('#staff_list [id="articleInfo16"]'), function (card) {
+    var text = Array.prototype.map.call(card.querySelectorAll('.articleTitle, .subtxt, .subtitle'), function (el) {
+      return el.textContent;
+    }).join(' ');
+    return { el: card, group: card.closest('.staff__group'), text: normalize(text) };
   });
-  document.querySelectorAll('#sideNav2 a').forEach(function (a) {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+
+  function filter() {
+    var terms = normalize(input.value).trim().split(' ').filter(Boolean);
+    var shown = 0;
+    cards.forEach(function (card) {
+      var match = terms.every(function (term) { return card.text.indexOf(term) !== -1; });
+      card.el.hidden = !match;
+      if (match) shown++;
+    });
+    groups.forEach(function (group) {
+      group.hidden = !cards.some(function (card) { return card.group === group && !card.el.hidden; });
+    });
+    status.textContent = !terms.length ? '' : shown ? shown + ' of ' + cards.length + ' ' + input.dataset.noun : 'No ' + input.dataset.noun + ' match \u201c' + input.value.trim() + '\u201d';
+  }
+
+  input.addEventListener('input', filter);
+
+  // Jump buttons clear the search so the section is visible, then scroll the school page to it (an instant jump; smooth scrolling through the frame is unreliable).
+  document.querySelectorAll('.staff__jump-link').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      var target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      if (input.value) {
+        input.value = '';
+        filter();
+      }
+      target.scrollIntoView({ block: 'start' });
+    });
   });
-  return false;
-}
+  filter();
+})();
 </script>
 </body>
 </html>

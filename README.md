@@ -35,7 +35,7 @@ The school's CMS is hard to edit and removes any JavaScript, so these pages are 
 
 ### Why the heights are fixed
 
-The CMS strips `<script>`, so the iframe can't grow to fit its page. Instead, the snippet sets a fixed height for each of seven screen-width ranges. The heights are measured with all accordions closed, plus 40px. If a visitor opens an accordion, the frame scrolls inside. The faculty page has tabs of very different lengths, so it gets a scrolling window that is 85% of the screen height.
+The CMS strips `<script>`, so the iframe can't grow to fit its page. Instead, the snippet sets a fixed height for each of seven screen-width ranges. The heights are measured with all accordions closed, plus 40px. If a visitor opens an accordion, the frame scrolls inside. The administration and faculty pages show everyone on one page with a search box at the top; they are measured with the search empty, so a search leaves blank space below the results.
 
 The small credit line under each iframe must stay readable. Search engines treat hidden links as spam.
 

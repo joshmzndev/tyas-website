@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="staff__page" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -8,6 +8,27 @@
 <link href="css/tyas.css" rel="stylesheet" />
 </head>
 <body>
+<!-- ===== SEARCH ===== -->
+<div class="staff__search">
+<input aria-controls="staff_list" aria-label="Search administration staff by name, title or bio" autocomplete="off" class="staff__search-input" data-noun="staff" id="staff_search" placeholder="Search by name, title or bio" spellcheck="false" type="search" />
+
+<p aria-live="polite" class="staff__search-status" id="staff_status"></p>
+
+<nav aria-label="Jump to a section" class="staff__jump">
+<ul class="staff__jump-list">
+	<li><a class="staff__jump-link" href="#adm_leadership" target="_self">Leadership</a></li>
+	<li><a class="staff__jump-link" href="#adm_office" target="_self">School Office</a></li>
+	<li><a class="staff__jump-link" href="#adm_campus" target="_self">Campus Services</a></li>
+</ul>
+</nav>
+</div>
+
+<div id="staff_list">
+
+<!-- ===== LEADERSHIP ===== -->
+<section class="staff__group" id="adm_leadership">
+<h2 class="staff__group-title">Leadership</h2>
+
 <div id="articleInfo16">
 <div class="narrowfix" id="AB001">
 <div class="item ">
@@ -79,6 +100,11 @@ M: <a href="mailto:finance@tyas.tyc.edu.tw">finance@tyas.tyc.edu.tw</a></div>
 </div>
 </div>
 </div>
+</section>
+
+<!-- ===== SCHOOL OFFICE ===== -->
+<section class="staff__group" id="adm_office">
+<h2 class="staff__group-title">School Office</h2>
 
 <div id="articleInfo16">
 <div class="narrowfix" id="AB001">
@@ -229,6 +255,11 @@ M: <a href="mailto:jyin@tyas.tyc.edu.tw">jyin@tyas.tyc.edu.tw</a></div>
 </div>
 </div>
 </div>
+</section>
+
+<!-- ===== CAMPUS SERVICES ===== -->
+<section class="staff__group" id="adm_campus">
+<h2 class="staff__group-title">Campus Services</h2>
 
 <div id="articleInfo16">
 <div class="narrowfix" id="AB001">
@@ -305,5 +336,58 @@ M: <a href="mailto:nurse@tyas.tyc.edu.tw">nurse@tyas.tyc.edu.tw</a></div>
 </div>
 </div>
 </div>
+</section>
+</div>
+
+<script>
+// Filter the staff cards by name, title and bio; every word typed must match.
+(function () {
+  var input = document.getElementById('staff_search');
+  var status = document.getElementById('staff_status');
+  var groups = document.querySelectorAll('.staff__group');
+
+  function normalize(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').toLowerCase();
+  }
+
+  var cards = Array.prototype.map.call(document.querySelectorAll('#staff_list [id="articleInfo16"]'), function (card) {
+    var text = Array.prototype.map.call(card.querySelectorAll('.articleTitle, .subtxt, .subtitle'), function (el) {
+      return el.textContent;
+    }).join(' ');
+    return { el: card, group: card.closest('.staff__group'), text: normalize(text) };
+  });
+
+  function filter() {
+    var terms = normalize(input.value).trim().split(' ').filter(Boolean);
+    var shown = 0;
+    cards.forEach(function (card) {
+      var match = terms.every(function (term) { return card.text.indexOf(term) !== -1; });
+      card.el.hidden = !match;
+      if (match) shown++;
+    });
+    groups.forEach(function (group) {
+      group.hidden = !cards.some(function (card) { return card.group === group && !card.el.hidden; });
+    });
+    status.textContent = !terms.length ? '' : shown ? shown + ' of ' + cards.length + ' ' + input.dataset.noun : 'No ' + input.dataset.noun + ' match \u201c' + input.value.trim() + '\u201d';
+  }
+
+  input.addEventListener('input', filter);
+
+  // Jump buttons clear the search so the section is visible, then scroll the school page to it (an instant jump; smooth scrolling through the frame is unreliable).
+  document.querySelectorAll('.staff__jump-link').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      var target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      if (input.value) {
+        input.value = '';
+        filter();
+      }
+      target.scrollIntoView({ block: 'start' });
+    });
+  });
+  filter();
+})();
+</script>
 </body>
 </html>
