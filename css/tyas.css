@@ -81,7 +81,7 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
 
 /* The filter script in administration.html and faculty.html hides non-matching cards. */
 .staff__search {
-  margin: 40px 0 0;
+  margin: 40px 0 32px;
 }
 
 .staff__search-input {

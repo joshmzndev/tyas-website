@@ -10,7 +10,7 @@ Standalone pages for https://www.tyas.tyc.edu.tw, hosted at `https://portal.tyas
 
 ## Files
 - Modern pages: `accreditation` (`acc__`), `mll` (`mll__`), `mun` (`mun__`), `safeguarding` (`sfg__`), `strategic_plan` (`stp__`). `acc`/`stp` use a centered title + italic subtitle; the rest use eyebrow + two-line `h2`.
-- Legacy staff pages: `administration`, `faculty` (`<html class="staff__page">` hides the frame scrollbar and pads the sides; a shared `staff__` search bar over `#articleInfo16` cards; `staff__group` headings with `staff__jump` buttons that scroll the CMS page to a group; both pages share the same script; repeated IDs, photos from relative `images/faculty/` paths). Their CSS is copied from the live site and keeps its hex colours on purpose.
+- Legacy staff pages: `administration`, `faculty` (`<html class="staff__page">` hides the frame scrollbar and pads the sides; a shared `staff__` search bar over `#articleInfo16` cards; `faculty` also has `staff__group` headings with `staff__jump` buttons that scroll the CMS page to a group, `administration` is one flat list; both pages share the same script; repeated IDs, photos from relative `images/faculty/` paths). Their CSS is copied from the live site and keeps its hex colours on purpose.
 - `images/<prefix>/` for page images (relative paths). `images/faculty/` holds staff photos, one file per person named first initial + last name, lowercase (`hkan.jpg`). `images/other/` is unreferenced. `pdf/` is embedded via `<iframe src="pdf/...">`. `_originals/` holds source copy and full-size photos.
 
 ## Page rules
