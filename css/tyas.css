@@ -261,22 +261,17 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
   margin: 0 auto 56px auto;
 }
 
-/* PDF frame: the iframe fills it and uses the browser's PDF viewer */
-.acc__embed {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  min-height: 480px;
+/* Certificate scans (rendered from the PDFs in _originals/accreditation/): square corners and no hover zoom, so no part of the document is cropped */
+.acc__figure {
+  overflow: hidden;
+  margin: 0;
   border: 1px solid rgba(var(--info-rgb), 0.15);
 }
 
-.acc__embed iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+.acc__image {
+  display: block;
   width: 100%;
-  height: 100%;
-  border: 0;
+  height: auto;
 }
 
 .acc__back {
@@ -304,10 +299,6 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
   /* long uppercase words ("ACCREDITATION") would otherwise break mid-word on phones */
   .acc__title {
     font-size: clamp(26px, 9vw, 46px);
-  }
-  .acc__embed {
-    height: 70vh;
-    min-height: 400px;
   }
 }
 
