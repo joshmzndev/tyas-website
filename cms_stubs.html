@@ -17,11 +17,17 @@
 
   accreditation   --h1:2470px;--h2:2230px;--h3:2420px;--h4:2000px;--h5:1920px;--h6:1910px;--h7:2150px;
   administration  --h1:4450px;--h2:5060px;--h3:15400px;--h4:14220px;--h5:13000px;--h6:11950px;--h7:12450px;
+  calendar        --h1:2290px;--h2:2730px;--h3:4020px;--h4:4740px;--h5:7890px;--h6:7880px;--h7:7040px;
   faculty         --h1:15810px;--h2:18980px;--h3:48230px;--h4:45350px;--h5:42670px;--h6:43720px;--h7:49680px;
   mll             --h1:3370px;--h2:3550px;--h3:3600px;--h4:3790px;--h5:4180px;--h6:4680px;--h7:5270px;
   mun             --h1:5140px;--h2:5070px;--h3:5200px;--h4:5670px;--h5:7000px;--h6:7470px;--h7:8630px;
   safeguarding    --h1:8980px;--h2:10890px;--h3:10900px;--h4:11610px;--h5:15070px;--h6:16190px;--h7:17840px;
   strategic_plan  --h1:3450px;--h2:3400px;--h3:3750px;--h4:3930px;--h5:4630px;--h6:5370px;--h7:6320px;
+
+  calendar is not in this repo: it lives at the portal root, so its src is
+  https://portal.tyas.tyc.edu.tw/calendar_embed.html (not /website/), with title "TYAS Academic Calendar".
+  Its event list loads live data, so its height grows as events are added. tools/measure_heights.sh can't
+  measure it (cross-origin); it was measured from full-page screenshots at each column width (Oct 2026).
 
   Credit line: it sits in the CMS page (www.tyas.tyc.edu.tw), not inside the iframe, so search
   engines count the link as part of the school page. It is a plain, followed link with
