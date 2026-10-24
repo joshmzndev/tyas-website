@@ -16,6 +16,6 @@ fetch("https://www.tyas.tyc.edu.tw/iweb/login.php", {
     "cookie": "third_party_var=value; third_party_var=value; PHPSESSID=71dba317e3bd26dddf4241a633dbcaaf",
     "Referer": "https://www.tyas.tyc.edu.tw/iweb/login.php"
   },
-  "body": "login=apple789&pass=VXqbR3*U&checknum=9HCG",
+  "body": "login=<USERNAME>&pass=<PASSWORD>&checknum=9HCG",
   "method": "POST"
 });
