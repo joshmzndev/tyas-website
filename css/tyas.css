@@ -171,6 +171,19 @@ a, a:link, a:visited, a:hover { text-decoration: none; }
   text-transform: uppercase;
 }
 
+/* Stands in for a portrait until a photo is supplied. */
+#articleInfo16 .staff__photo-placeholder {
+  align-items: center;
+  border: 1px solid rgba(var(--info-rgb), .5);
+  box-sizing: border-box;
+  color: rgba(var(--info-rgb), .5);
+  display: flex;
+  font-family: 'Crimson Text', serif;
+  font-size: 48px;
+  font-weight: 600;
+  justify-content: center;
+}
+
 #staff_list [hidden] {
   display: none;
 }
@@ -1865,5 +1878,64 @@ a.sfg__link:hover {
   }
   .stp__phase {
     padding-left: 0;
+  }
+}
+
+/* ==================== THE TYAS TIMES (tms__) ==================== */
+/* ---- Shared ---- */
+#tms_flipbook {
+  padding: 6vw 0;
+}
+
+/* ---- Section 1: Flipbook ---- */
+.tms__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.tms__button {
+  display: inline-block;
+  font-family: 'Crimson Text', serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--primary);
+  padding: 16px 40px;
+  border: 2px solid var(--primary);
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.tms__button:hover {
+  color: var(--triadic2);
+  border-color: var(--triadic2);
+}
+
+/* the book fills the frame, so size the frame from the width: two-page spread plus title and buttons */
+.tms__viewer {
+  display: block;
+  width: 100%;
+  height: calc(min(85vw, 1260px) / 1.4 + 190px);
+  border: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .tms__button {
+    padding: 16px 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tms__button {
+    padding: 12px 24px;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  /* single-page view: one tall page plus wrapped buttons */
+  .tms__viewer {
+    height: calc(85vw * 1.42 + 320px);
   }
 }

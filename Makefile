@@ -2,7 +2,7 @@
 PORT ?= 8000
 
 # Upload target. Docs, cms_stubs.html and the Makefile stay local.
-DEPLOY_HOST ?= root@172.16.11.32
+DEPLOY_HOST ?= tyas-api
 DEPLOY_DIR ?= /var/www/html/website
 PAGES := $(filter-out cms_stubs.html,$(wildcard *.html))
 
